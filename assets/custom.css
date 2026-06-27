@@ -1,0 +1,74 @@
+/* ── Sprach-Toggle-Button ───────────────────────────────────────────────────
+   Verwendet TypeDocs eigene CSS-Variablen → Light + Dark Mode automatisch.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+#tsd-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: auto !important;        /* tsd-widget setzt 2.5rem, hier überschreiben */
+  padding: 0 0.55rem;
+  height: 2.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-family: inherit;
+
+  color: var(--color-text);
+  background: transparent;
+  border: 1.5px solid color-mix(in srgb, var(--color-text) 22%, transparent);
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+#tsd-lang-toggle .lang-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+#tsd-lang-toggle .lang-label {
+  line-height: 1;
+}
+
+/* Hover: etwas kräftiger */
+#tsd-lang-toggle:hover {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+
+/* Aktiver Zustand (Übersetzung ist EIN → Button zeigt "DE") */
+#tsd-lang-toggle[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color:  var(--color-accent);
+  color: #fff;
+  opacity: 1;
+}
+
+#tsd-lang-toggle[aria-pressed="true"]:hover {
+  filter: brightness(1.1);
+}
+
+/* ── Dark-Mode-Feintuning ───────────────────────────────────────────────────
+   Die CSS-Variablen schalten automatisch, aber der Border braucht etwas
+   mehr Kontrast im Dunkeln.                                                 */
+[data-theme="dark"] #tsd-lang-toggle {
+  border-color: color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+
+[data-theme="dark"] #tsd-lang-toggle:hover {
+  border-color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+/* ── Google-Interna verstecken ──────────────────────────────────────────────*/
+#tsd-gt-hidden,
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
+}
+
+/* Verhindert dass Google den <body> um die Banner-Höhe verschiebt */
+body {
+  top: 0 !important;
+}
